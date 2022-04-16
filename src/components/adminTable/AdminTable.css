@@ -1,0 +1,12 @@
+.container {
+    width: 100%;
+    border-collapse: collapse;
+    padding-top: 10px;
+}
+thead {
+    height: 40px;
+    border-bottom: 1px solid lightgray;
+}
+th {
+    text-align: start;
+}

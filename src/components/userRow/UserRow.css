@@ -1,0 +1,10 @@
+.role::first-letter {
+    text-transform: capitalize;
+}
+
+td {
+    text-align: start;
+    height: 60px;
+    border-bottom: 1px solid lightgray;
+    vertical-align: middle;
+}
