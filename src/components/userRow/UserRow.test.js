@@ -11,7 +11,7 @@ const userData = {
   isSelected: false,
 };
 
-describe("<UserRow />", () => {
+describe("UserRow", () => {
   let wrapper;
   it("UserRow renders correctly", () => {
     wrapper = mount(<UserRow userData={userData} />, {

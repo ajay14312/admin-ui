@@ -25,7 +25,7 @@ const usersData = [
   },
 ];
 
-describe("<AdminScreen />", () => {
+describe("AdminScreen", () => {
   let wrapper;
   let useEffect;
 
@@ -50,11 +50,11 @@ describe("<AdminScreen />", () => {
     shallow(<AdminScreen />);
   });
 
-  it("search value should be empty initially", () => {
+  it("Initial search value should be empty", () => {
     expect(wrapper.find('input[name="searchInput"]').prop("value")).toBe("");
   });
 
-  it("search value value should update on entering text", () => {
+  it("Search value should update", () => {
     wrapper.find('input[name="searchInput"]').simulate("change", {
       target: {
         value: "aaron",

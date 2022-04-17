@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 
 import Pagination from "./Pagination";
 
-describe("<Pagination />", () => {
+describe("Pagination", () => {
   let wrapper;
   it("Pagination renders correctly", () => {
     wrapper = mount(<Pagination selectedPage={1} totalPages={5} />, {

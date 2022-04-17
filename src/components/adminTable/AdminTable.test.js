@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 
 import AdminTable from "./AdminTable";
 
-const data = [
+const userData = [
   {
     id: "1",
     name: "Aaron Miles",
@@ -27,10 +27,10 @@ const data = [
   },
 ];
 
-describe("<AdminTable />", () => {
+describe("AdminTable", () => {
   let wrapper;
   it("AdminTable renders correctly", () => {
-    wrapper = mount(<AdminTable paginatedUsers={data} />, {
+    wrapper = mount(<AdminTable paginatedUsers={userData} />, {
       attachTo: document.createElement("div"),
     });
   });
