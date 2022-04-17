@@ -1,10 +1,23 @@
 .role::first-letter {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 td {
-    text-align: start;
-    height: 60px;
-    border-bottom: 1px solid lightgray;
-    vertical-align: middle;
+  text-align: start;
+  height: 60px;
+  border-bottom: 1px solid lightgray;
+  vertical-align: middle;
+}
+
+.actions-container {
+  display: flex;
+  gap: 16px;
+  cursor: pointer;
+}
+
+.inputLayout {
+  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid lightgray;
+  border-radius: 4px;
 }
