@@ -9,12 +9,11 @@ td {
   vertical-align: middle;
 }
 
-.actions-container {
+.actionsContainer {
   display: flex;
   gap: 16px;
   cursor: pointer;
 }
-
 
 .fieldLayout {
   height: 40px;
@@ -22,8 +21,21 @@ td {
   border: 1px solid lightgray;
   border-radius: 4px;
   outline: none;
+  width: 85%;
 }
 
 .rowSelected {
   background-color: #f8f8f8;
+}
+
+.checkboxWrapper {
+  min-width: 260px;
+}
+
+.wrapper {
+  min-width: 150px;
+}
+
+.trashCan {
+  color: #f44336eb;
 }

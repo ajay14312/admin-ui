@@ -51,21 +51,23 @@ describe("<AdminScreen />", () => {
   });
 
   it("search value should be empty initially", () => {
-    expect(wrapper.find('input[name="search"]').prop("value")).toBe("");
+    expect(wrapper.find('input[name="searchInput"]').prop("value")).toBe("");
   });
 
   it("search value value should update on entering text", () => {
-    wrapper.find('input[name="search"]').simulate("change", {
+    wrapper.find('input[name="searchInput"]').simulate("change", {
       target: {
         value: "aaron",
       },
     });
-    expect(wrapper.find('input[name="search"]').prop("value")).toBe("aaron");
+    expect(wrapper.find('input[name="searchInput"]').prop("value")).toBe(
+      "aaron"
+    );
   });
 
   it("API should trigger", async () => {
     await act(async () => {
-      await fetch.mockImplementationOnce(() => Promise.resolve(usersData));
+      await fetch.mockResponseOnce(() => Promise.resolve(usersData));
       wrapper = mount(<AdminScreen />);
     });
 

@@ -89,7 +89,7 @@ const AdminScreen = () => {
     });
     setUsers(tempUsers);
   };
-  
+
   useEffect(() => {
     updateIsLoading(true);
     fetchUsers();
@@ -127,7 +127,7 @@ const AdminScreen = () => {
       ) : (
         <>
           <input
-            name="search"
+            name="searchInput"
             className="searchInput"
             placeholder="Search by name, email or role"
             value={searchText}

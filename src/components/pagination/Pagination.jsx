@@ -16,7 +16,7 @@ const Pagination = ({ selectedPage, totalPages, onPageChange }) => {
   const pageNumbers = Array.from(range(1, totalPages, 1));
 
   return (
-    <div className="pagination-container">
+    <div className="paginationContainer">
       <div className={`circle ${selectedPage === 1 ? "disabled" : ""}`}>
         <FontAwesomeIcon
           icon={faAngleDoubleLeft}

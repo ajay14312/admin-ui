@@ -8,11 +8,12 @@
 .deleteBtn {
   background-color: rgb(233, 26, 71);
   color: #fff;
-  height: 40px;
+  height: 36px;
   box-sizing: border-box;
   border: 1px solid rgb(233, 26, 71);
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
+  width: 140px;
 }
 
 .disabled {
@@ -22,5 +23,6 @@
 
 .footer {
   display: flex;
-  justify-content: space-between;
+  gap: 100px;
+  align-items: center;
 }

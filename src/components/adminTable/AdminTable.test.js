@@ -40,8 +40,6 @@ describe("<AdminTable />", () => {
   });
 
   it("AdminTable should have 1 table rows", () => {
-    expect(
-      Array.from(wrapper.find("tr"))[1].props.children[1].props.children
-    ).toBe("Aaron Miles");
+    expect(Array.from(wrapper.find("tr")).length).toBe(4);
   });
 });

@@ -40,38 +40,44 @@ const UserRow = ({ userData, onSave, onDelete, onChange }) => {
   return (
     <tr className={`${userData.isSelected ? "rowSelected" : ""}`}>
       <td>
-        <input
-          type="checkbox"
-          onChange={(event) => onChange(id, event.target.checked)}
-          checked={userData.isSelected}
-        />
-      </td>
-      <td>
-        {!isEditOn ? (
-          name
-        ) : (
+        <div className="checkboxWrapper">
           <input
-            className="fieldLayout"
-            name="name"
-            value={name}
-            onChange={editHandler}
+            type="checkbox"
+            onChange={(event) => onChange(id, event.target.checked)}
+            checked={userData.isSelected}
           />
-        )}
+        </div>
       </td>
       <td>
-        {!isEditOn ? (
-          email
-        ) : (
-          <input
-            className="fieldLayout"
-            name="email"
-            value={email}
-            onChange={editHandler}
-          />
-        )}
+        <div className="wrapper">
+          {!isEditOn ? (
+            name
+          ) : (
+            <input
+              className="fieldLayout"
+              name="name"
+              value={name}
+              onChange={editHandler}
+            />
+          )}
+        </div>
       </td>
       <td>
-        <div className="role">
+        <div className="wrapper">
+          {!isEditOn ? (
+            email
+          ) : (
+            <input
+              className="fieldLayout"
+              name="email"
+              value={email}
+              onChange={editHandler}
+            />
+          )}
+        </div>
+      </td>
+      <td>
+        <div className="role wrapper">
           {!isEditOn ? (
             role
           ) : (
@@ -88,28 +94,30 @@ const UserRow = ({ userData, onSave, onDelete, onChange }) => {
         </div>
       </td>
       <td>
-        {!isEditOn ? (
-          <div className="actions-container">
-            <span>
-              <FontAwesomeIcon
-                icon={faEdit}
-                onClick={() => setIsEditOn(true)}
-              />
-            </span>
-            <span>
-              <FontAwesomeIcon icon={faTrashCan} onClick={deleteHandler} />
-            </span>
-          </div>
-        ) : (
-          <div className="actions-container">
-            <span>
-              <FontAwesomeIcon icon={faDownload} onClick={saveHandler} />
-            </span>
-            <span>
-              <FontAwesomeIcon icon={faX} onClick={cancelHandler} />
-            </span>
-          </div>
-        )}
+        <div className="wrapper">
+          {!isEditOn ? (
+            <div className="actionsContainer">
+              <span>
+                <FontAwesomeIcon
+                  icon={faEdit}
+                  onClick={() => setIsEditOn(true)}
+                />
+              </span>
+              <span className="trashCan">
+                <FontAwesomeIcon icon={faTrashCan} onClick={deleteHandler} />
+              </span>
+            </div>
+          ) : (
+            <div className="actionsContainer">
+              <span>
+                <FontAwesomeIcon icon={faDownload} onClick={saveHandler} />
+              </span>
+              <span>
+                <FontAwesomeIcon icon={faX} onClick={cancelHandler} />
+              </span>
+            </div>
+          )}
+        </div>
       </td>
     </tr>
   );
