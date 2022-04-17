@@ -68,6 +68,20 @@ const AdminScreen = () => {
     setUsers(tempUsers);
   };
 
+  const deleteSelectedUsersHandler = () => {
+    let tempUsers = [...users];
+    tempUsers = tempUsers.filter((user) => {
+      let isFiltered = true;
+      pAndFUsersData.forEach((pAndFUser) => {
+        if (user.id === pAndFUser.id && pAndFUser.isSelected) {
+          isFiltered = false;
+        }
+      });
+      return isFiltered;
+    });
+    setUsers(tempUsers);
+  };
+
   useEffect(() => {
     fetchUsers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -121,6 +135,7 @@ const AdminScreen = () => {
                     !isAnyUserSelected ? "disabled" : ""
                   }`}
                   disabled={!isAnyUserSelected}
+                  onClick={deleteSelectedUsersHandler}
                 >
                   Delete selected
                 </button>

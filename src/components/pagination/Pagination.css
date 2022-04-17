@@ -1,5 +1,29 @@
 .pagination-container {
-    display: flex;
-    gap: 10px;
-    cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.circle {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #1280d8;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1280d8;
+  color: #fff;
+  cursor: pointer;
+}
+.selected {
+  background-color: #fff;
+  color: #1280d8;
+}
+
+.disabled {
+  pointer-events: none;
+  background-color: lightgray;
+  color: gray;
+  border: 1px solid gray;
+  cursor: not-allowed;
 }
