@@ -11,32 +11,39 @@ import "./UserRow.css";
 const UserRow = ({ userData, onSave, onDelete, onChange }) => {
   const [isEditOn, setIsEditOn] = useState(false);
   const [formFileds, setFormFileds] = useState({ ...userData });
-  const { id, name, email, role, isSelected } = formFileds;
+  const { id, name, email, role } = formFileds;
 
   const editHandler = (event) => {
     const { name, value } = event.target;
     setFormFileds({ ...formFileds, [name]: value });
   };
+
   const cancelHandler = () => {
     setIsEditOn(false);
     setFormFileds({ ...userData });
   };
+
   const saveHandler = () => {
-    setIsEditOn(false);
-    onSave(formFileds);
+    if (name.length === 0 || email.length === 0) {
+      alert("Fields cannot be empty");
+    } else {
+      setIsEditOn(false);
+      onSave(formFileds);
+    }
   };
+
   const deleteHandler = () => {
     setIsEditOn(false);
     onDelete(id);
   };
 
   return (
-    <tr>
+    <tr className={`${userData.isSelected ? "rowSelected" : ""}`}>
       <td>
         <input
           type="checkbox"
           onChange={(event) => onChange(id, event.target.checked)}
-          checked={isSelected}
+          checked={userData.isSelected}
         />
       </td>
       <td>
@@ -44,7 +51,7 @@ const UserRow = ({ userData, onSave, onDelete, onChange }) => {
           name
         ) : (
           <input
-            className="inputLayout"
+            className="fieldLayout"
             name="name"
             value={name}
             onChange={editHandler}
@@ -56,7 +63,7 @@ const UserRow = ({ userData, onSave, onDelete, onChange }) => {
           email
         ) : (
           <input
-            className="inputLayout"
+            className="fieldLayout"
             name="email"
             value={email}
             onChange={editHandler}
@@ -69,7 +76,7 @@ const UserRow = ({ userData, onSave, onDelete, onChange }) => {
             role
           ) : (
             <select
-              className="inputLayout"
+              className="fieldLayout"
               name="role"
               value={role}
               onChange={editHandler}

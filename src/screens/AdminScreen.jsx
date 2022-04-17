@@ -14,6 +14,7 @@ const AdminScreen = () => {
   const [selectedPage, setSelectedPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, updateIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const isAnyUserSelected = pAndFUsersData.reduce(
     (isSelected, user) => isSelected || user.isSelected,
@@ -21,16 +22,23 @@ const AdminScreen = () => {
   );
 
   const fetchUsers = async () => {
-    const response = await fetch(
-      "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
-    );
-    const data = await response.json();
-    updateIsLoading(false);
-    setUsers(
-      data.map((user) => {
-        return { ...user, isSelected: false };
-      })
-    );
+    try {
+      const response = await fetch(
+        "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
+      );
+      const data = await response.json();
+      updateIsLoading(false);
+      setError(false);
+      setUsers(
+        data.map((user) => {
+          return { ...user, isSelected: false };
+        })
+      );
+    } catch (err) {
+      console.log(err);
+      setError(true);
+      updateIsLoading(false);
+    }
   };
 
   const updatePandFUsersData = (usersData) => {
@@ -68,7 +76,22 @@ const AdminScreen = () => {
     setUsers(tempUsers);
   };
 
+  const deleteSelectedUsersHandler = () => {
+    let tempUsers = [...users];
+    tempUsers = tempUsers.filter((user) => {
+      let isFiltered = true;
+      pAndFUsersData.forEach((pAndFUser) => {
+        if (user.id === pAndFUser.id && pAndFUser.isSelected) {
+          isFiltered = false;
+        }
+      });
+      return isFiltered;
+    });
+    setUsers(tempUsers);
+  };
+  
   useEffect(() => {
+    updateIsLoading(true);
     fetchUsers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -99,9 +122,12 @@ const AdminScreen = () => {
 
   return (
     <>
-      {isLoading ? null : (
+      {isLoading ? null : error ? (
+        <div>Unable to fetch the data. Please try refresh</div>
+      ) : (
         <>
           <input
+            name="search"
             className="searchInput"
             placeholder="Search by name, email or role"
             value={searchText}
@@ -121,6 +147,7 @@ const AdminScreen = () => {
                     !isAnyUserSelected ? "disabled" : ""
                   }`}
                   disabled={!isAnyUserSelected}
+                  onClick={deleteSelectedUsersHandler}
                 >
                   Delete selected
                 </button>
