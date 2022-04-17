@@ -2,7 +2,7 @@ import UserRow from "../userRow/UserRow";
 
 import "./AdminTable.css";
 
-const AdminTable = ({ paginatedUsers, onChange }) => {
+const AdminTable = ({ paginatedUsers, onSave, onDelete, onChange }) => {
   const isAllSelected = paginatedUsers.reduce(
     (isSelected, user) => isSelected && user.isSelected,
     true
@@ -31,7 +31,13 @@ const AdminTable = ({ paginatedUsers, onChange }) => {
       </thead>
       <tbody>
         {paginatedUsers.map((user) => (
-          <UserRow key={user.id} memberData={user} onChange={onChange} />
+          <UserRow
+            key={user.id}
+            userData={user}
+            onChange={onChange}
+            onSave={onSave}
+            onDelete={onDelete}
+          />
         ))}
       </tbody>
     </table>

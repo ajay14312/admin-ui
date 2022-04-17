@@ -50,6 +50,24 @@ const AdminScreen = () => {
     setUsers(tempUsers);
   };
 
+  const updateUserDataOnSaveHandler = (userData) => {
+    let tempUsers = [...users];
+    tempUsers = tempUsers.map((user) => {
+      if (user.id === userData.id) {
+        return userData;
+      }
+      return user;
+    });
+    setUsers(tempUsers);
+  };
+
+  const deleteUserHandler = (userId) => {
+    const tempUsers = [...users];
+    const index = tempUsers.findIndex((user) => user.id === userId);
+    tempUsers.splice(index, 1);
+    setUsers(tempUsers);
+  };
+
   useEffect(() => {
     fetchUsers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -94,6 +112,8 @@ const AdminScreen = () => {
               <AdminTable
                 paginatedUsers={pAndFUsersData}
                 onChange={updateUserSelectedHandler}
+                onSave={updateUserDataOnSaveHandler}
+                onDelete={deleteUserHandler}
               />
               <div className="footer">
                 <button
@@ -114,9 +134,7 @@ const AdminScreen = () => {
               </div>
             </>
           ) : (
-            <>
-              <div>No data found</div>
-            </>
+            <div>No data found</div>
           )}
         </>
       )}
