@@ -89,7 +89,7 @@ const AdminScreen = () => {
     });
     setUsers(tempUsers);
   };
-
+  
   useEffect(() => {
     updateIsLoading(true);
     fetchUsers();

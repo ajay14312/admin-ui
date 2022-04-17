@@ -55,7 +55,6 @@ const UserRow = ({ userData, onSave, onDelete, onChange }) => {
             name="name"
             value={name}
             onChange={editHandler}
-            required={true}
           />
         )}
       </td>
